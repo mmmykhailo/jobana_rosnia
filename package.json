@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sqwoteg/jobana_rusnia.git"
+    "url": "git+https://github.com/bogdanbpeterson/jobana-rusnia-bot.git"
   },
   "keywords": [
     "telegram",
@@ -22,9 +22,9 @@
   "author": "@sqwoteg",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sqwoteg/jobana_rusnia/issues"
+    "url": "https://github.com/bogdanbpeterson/jobana-rusnia-bot/issues"
   },
-  "homepage": "https://github.com/sqwoteg/jobana_rusnia#readme",
+  "homepage": "https://github.com/bogdanbpeterson/jobana-rusnia-bot#readme",
   "devDependencies": {
     "@tsconfig/node-lts-strictest": "^18.12.1",
     "@types/node": "^18.11.9",
