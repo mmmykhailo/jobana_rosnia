@@ -1,3 +1,6 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,6 +11,7 @@ datasource db {
 }
 
 model Chat {
-  id      BigInt @id
-  counter Int    @default(0)
+  chatId BigInt @id @unique
+
+  encounters Int @default(0)
 }
