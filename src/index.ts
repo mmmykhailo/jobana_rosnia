@@ -4,6 +4,7 @@ import { BOT_TOKEN } from './config/env.config';
 import { jobanaAnimationFileId } from './config/jobanaAnimation';
 import { dbClient } from './db';
 import { containsJobana } from './utils/containsJobana';
+import { Chance } from './models/chance.model';
 import * as chat from './models/chat.model';
 import { pluralize } from './utils/pluralize';
 import { isChatPrivate } from './utils/isChatPrivate';
@@ -11,6 +12,7 @@ import { isChatGroup } from './utils/isChatGroup';
 
 const main = async () => {
   const bot = new Telegraf(BOT_TOKEN);
+  const chance = new Chance();
 
   bot.start((ctx) => {
     if (isChatPrivate(ctx.message.chat))
@@ -54,7 +56,7 @@ const main = async () => {
         return;
       }
 
-      if (Math.random() > 0.89) {
+      if (chance.do()) {
         ctx.sendAnimation(jobanaAnimationFileId);
         return;
       }
