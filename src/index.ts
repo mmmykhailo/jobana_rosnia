@@ -8,9 +8,6 @@ import * as chat from './models/chat.model';
 import { pluralize } from './utils/pluralize';
 import { isChatPrivate } from './utils/isChatPrivate';
 import { isChatGroup } from './utils/isChatGroup';
-import { config } from 'dotenv';
-
-config();
 
 const main = async () => {
   const bot = new Telegraf(BOT_TOKEN);
