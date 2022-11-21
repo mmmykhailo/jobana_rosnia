@@ -16,10 +16,10 @@ export class Chance {
   do() {
     const chance = this.getChance();
 
-    const shouldIDoIt = chance > 0.89;
+    const result = chance > 0.89;
 
-    if (shouldIDoIt) this.accumulatedChance = 0;
+    if (result) this.accumulatedChance = 0;
 
-    return shouldIDoIt;
+    return result;
   }
 }
