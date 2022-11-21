@@ -1,9 +1,9 @@
 import { Telegraf } from 'telegraf';
 import { message } from 'telegraf/filters';
 import { BOT_TOKEN } from './config/env.config';
-import { jobanaruzzniaFileId } from './config/jobanaAnimation';
+import { jobanaAnimationFileId } from './config/jobanaAnimation';
 import { dbClient } from './db';
-import { containsPiggoDogges } from './utils/containsPiggoDoggos';
+import { containsJobana } from './utils/containsJobana';
 import * as chat from './models/chat.model';
 import { pluralize } from './utils/pluralize';
 import { isChatPrivate } from './utils/isChatPrivate';
@@ -40,7 +40,7 @@ const main = async () => {
       return;
     }
 
-    const shouldIAnswer = containsPiggoDogges(ctx.message.text);
+    const shouldIAnswer = containsJobana(ctx.message.text);
 
     if (shouldIAnswer) {
       const chatId = ctx.message.chat.id;
@@ -55,7 +55,7 @@ const main = async () => {
       }
 
       if (Math.random() > 0.89) {
-        ctx.sendAnimation(jobanaruzzniaFileId);
+        ctx.sendAnimation(jobanaAnimationFileId);
         return;
       }
 
