@@ -4,7 +4,7 @@
   "description": "Bot for fucking .uzzian pigs",
   "private": "true",
   "scripts": {
-    "start": "npm run build && node ./dist/index.js",
+    "start": "npm run build && cp -p .env dist/ && node ./dist/index.js",
     "dev": "nodemon",
     "build": "rimraf ./dist && tsc"
   },
