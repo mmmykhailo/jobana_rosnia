@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "Chat" (
-    "chatId" INTEGER NOT NULL,
+    "chatId" BIGINT NOT NULL,
     "encounters" INTEGER NOT NULL DEFAULT 0,
 
     CONSTRAINT "Chat_pkey" PRIMARY KEY ("chatId")

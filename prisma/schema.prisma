@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Chat {
-  chatId Int @id @unique
+  chatId BigInt @id @unique
 
   encounters Int @default(0)
 }

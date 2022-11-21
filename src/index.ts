@@ -1,31 +1,46 @@
 import { Telegraf } from 'telegraf';
 import { message } from 'telegraf/filters';
 import { BOT_TOKEN } from './config/env.config';
-import { jobanaruzzniaFileId } from './config/jobana-ruzznia-animation';
+import { jobanaruzzniaFileId } from './config/jobanaAnimation';
 import { dbClient } from './db';
-import { containsruzzniu } from './utils/contains-ruzzniy';
+import { containsPiggoDogges } from './utils/containsPiggoDoggos';
 import * as chat from './models/chat.model';
 import { pluralize } from './utils/pluralize';
+import { isChatPrivate } from './utils/isChatPrivate';
+import { isChatGroup } from './utils/isChatGroup';
 
 const main = async () => {
   const bot = new Telegraf(BOT_TOKEN);
 
   bot.start((ctx) => {
-    ctx.reply('Додай мене в групу і почніть їбати русню');
+    if (isChatPrivate(ctx.message.chat))
+      ctx.reply('Додай мене в групу і почніть їбати русню');
+
+    if (isChatGroup(ctx.message.chat))
+      ctx.reply(
+        'Розпочніть подорож русофобією!\nВідправте повідомлення з йобаною руснею'
+      );
   });
 
   bot.help((ctx) => {
-    // handle help command
-    ctx.reply('Додай мене в групу і почніть їбати русню');
+    if (isChatPrivate(ctx.message.chat))
+      ctx.reply(
+        'Розпочни подорож русофобією!\nДодай мене в групу та починай їбати русню'
+      );
+
+    if (isChatGroup(ctx.message.chat))
+      ctx.reply(
+        'Розпочніть подорож русофобією!\nВідправте повідомлення з йобаною руснею'
+      );
   });
 
   bot.on(message('text'), async (ctx) => {
-    if (ctx.message.chat.type === 'private') {
+    if (isChatPrivate(ctx.message.chat)) {
       ctx.reply('Пробач, але я працюю тільки в групах 🥺');
       return;
     }
 
-    const shouldIAnswer = containsruzzniu(ctx.message.text);
+    const shouldIAnswer = containsPiggoDogges(ctx.message.text);
 
     if (shouldIAnswer) {
       const chatId = ctx.message.chat.id;
@@ -34,7 +49,7 @@ const main = async () => {
 
       if (encounters === 1) {
         ctx.reply(
-          `Вітаю! Ваша подорож русофобією розпочалася! ₚусня йобана ${encounters} ${timesPluralized}`
+          `Вітаю! Ваша подорож русофобією розпочалася!\nₚусня йобана ${encounters} ${timesPluralized}`
         );
         return;
       }
