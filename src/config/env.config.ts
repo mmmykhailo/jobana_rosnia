@@ -1,7 +1,12 @@
 import path from 'path';
 import dotenv from 'dotenv';
 
-dotenv.config({ path: path.resolve(__dirname, '..', '.env') });
+const envFilename =
+  process.env['NODE_ENV'] === 'production'
+    ? path.resolve(__dirname, '..', '.env')
+    : path.resolve(__dirname, '..', '..', '.env');
+
+dotenv.config({ path: envFilename });
 
 interface ENV {
   BOT_TOKEN: string | undefined;
