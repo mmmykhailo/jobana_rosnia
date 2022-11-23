@@ -11,7 +11,8 @@ export const helpCommand: TelegrafCommandHandler = (ctx) => {
 
   if (isChatGroup(ctx.message.chat)) {
     ctx.reply(
-      'Розпочніть подорож русофобією!\nВідправте повідомлення з йобаною руснею'
+      'Розпочніть подорож русофобією!\nВідправте повідомлення з йобаною руснею',
+      { reply_to_message_id: ctx.message.message_id }
     );
   }
 };

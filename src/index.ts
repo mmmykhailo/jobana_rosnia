@@ -33,7 +33,8 @@ const main = async () => {
 
       if (encounters === 1) {
         ctx.reply(
-          `Вітаю! Ваша подорож русофобією розпочалася!\nₚусня йобана ${encounters} ${timesPluralized}`
+          `Вітаю! Ваша подорож русофобією розпочалася!\nₚусня йобана ${encounters} ${timesPluralized}`,
+          { reply_to_message_id: ctx.message.message_id }
         );
         return;
       }
@@ -43,7 +44,9 @@ const main = async () => {
         return;
       }
 
-      ctx.reply(`ₚусня йобана вже ${encounters} ${timesPluralized}`);
+      ctx.reply(`ₚусня йобана вже ${encounters} ${timesPluralized}`, {
+        reply_to_message_id: ctx.message.message_id,
+      });
     }
   });
 
