@@ -3,8 +3,7 @@ import { message } from 'telegraf/filters';
 import { BOT_TOKEN } from './config/env.config';
 import { jobanaAnimationFileId } from './config/jobanaAnimation';
 import { dbClient } from './db';
-import { helpCommand } from './commands/help.command';
-import { startCommand } from './commands/start.command';
+import { helpCommand, startCommand, topCommand } from './commands';
 import { Chance } from './models/chance.model';
 import * as chat from './models/chat.model';
 import { containsJobana } from './utils/containsJobana';
@@ -16,8 +15,8 @@ const main = async () => {
   const chance = new Chance();
 
   bot.start(startCommand);
-
   bot.help(helpCommand);
+  bot.command('top', topCommand);
 
   bot.on(message('text'), async (ctx) => {
     if (isChatPrivate(ctx.message.chat)) {
