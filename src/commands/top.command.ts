@@ -10,8 +10,14 @@ export const topCommand: TelegrafCommandHandler = async (ctx) => {
 
   if (isChatGroup(ctx.message.chat)) {
     const chatPosition = await getChatLeaderboardPosition(ctx.message.chat.id);
-    if (chatPosition)
-      ctx.reply(`Ви найкращі ☺️\nВаша позиція в рейтингу: ${chatPosition}`);
-    else ctx.reply(`Отакої! Здається ви ще не берете участь в їбанні русні...`);
+    if (chatPosition) {
+      ctx.reply(`Ви найкращі ☺️\nВаша позиція в рейтингу: ${chatPosition}`, {
+        reply_to_message_id: ctx.message.message_id,
+      });
+    } else {
+      ctx.reply(`Отакої! Здається ви ще не берете участь в їбанні русні...`, {
+        reply_to_message_id: ctx.message.message_id,
+      });
+    }
   }
 };
