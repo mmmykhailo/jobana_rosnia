@@ -20,10 +20,9 @@ export const incrementCounter = async (chatId: number) => {
 };
 
 export const getChatLeaderboardPosition = async (chatId: number) => {
-  const result =
-    (await dbClient.$queryRaw`select "rowNumber" from (select row_number() over(order by encounters desc) "rowNumber", * from "Chat") where "chatId"=${chatId}`) as {
-      rowNumber: number;
-    }[];
+  const result: {
+    rowNumber: number;
+  }[] = await dbClient.$queryRaw`select "rowNumber" from (select row_number() over(order by encounters desc) "rowNumber", * from "Chat") where "chatId"=${chatId}`;
 
   return Number(result[0]?.rowNumber);
 };
