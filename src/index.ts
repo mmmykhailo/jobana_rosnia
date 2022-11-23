@@ -3,38 +3,20 @@ import { message } from 'telegraf/filters';
 import { BOT_TOKEN } from './config/env.config';
 import { jobanaAnimationFileId } from './config/jobanaAnimation';
 import { dbClient } from './db';
-import { containsJobana } from './utils/containsJobana';
+import { helpCommand, startCommand, topCommand } from './commands';
 import { Chance } from './models/chance.model';
 import * as chat from './models/chat.model';
-import { pluralize } from './utils/pluralize';
+import { containsJobana } from './utils/containsJobana';
 import { isChatPrivate } from './utils/isChatPrivate';
-import { isChatGroup } from './utils/isChatGroup';
+import { pluralize } from './utils/pluralize';
 
 const main = async () => {
   const bot = new Telegraf(BOT_TOKEN);
   const chance = new Chance();
 
-  bot.start((ctx) => {
-    if (isChatPrivate(ctx.message.chat))
-      ctx.reply('Додай мене в групу і почніть їбати русню');
-
-    if (isChatGroup(ctx.message.chat))
-      ctx.reply(
-        'Розпочніть подорож русофобією!\nВідправте повідомлення з йобаною руснею'
-      );
-  });
-
-  bot.help((ctx) => {
-    if (isChatPrivate(ctx.message.chat))
-      ctx.reply(
-        'Розпочни подорож русофобією!\nДодай мене в групу та починай їбати русню'
-      );
-
-    if (isChatGroup(ctx.message.chat))
-      ctx.reply(
-        'Розпочніть подорож русофобією!\nВідправте повідомлення з йобаною руснею'
-      );
-  });
+  bot.start(startCommand);
+  bot.help(helpCommand);
+  bot.command('top', topCommand);
 
   bot.on(message('text'), async (ctx) => {
     if (isChatPrivate(ctx.message.chat)) {
@@ -66,6 +48,8 @@ const main = async () => {
   });
 
   bot.launch();
+
+  console.log(`Bot started`);
 
   process.once('SIGINT', () => bot.stop('SIGINT'));
   process.once('SIGTERM', () => bot.stop('SIGTERM'));
