@@ -19,10 +19,21 @@ export const incrementCounter = async (chatId: number) => {
   return chat.encounters;
 };
 
+export const chatExists = async (chatId: number) => {
+  const chat = dbClient.chat.findUnique({
+    where: {
+      chatId,
+    },
+  });
+
+  return Boolean(chat);
+};
+
 export const getChatLeaderboardPosition = async (chatId: number) => {
   const result: {
     rowNumber: number;
-  }[] = await dbClient.$queryRaw`select "rowNumber" from (select row_number() over(order by encounters desc) "rowNumber", * from "Chat") where "chatId"=${chatId}`;
+  }[] =
+    await dbClient.$queryRaw`select "rowNumber" from (select row_number() over(order by encounters desc) "rowNumber", * from "Chat") where "chatId"=${chatId}`;
 
   return Number(result[0]?.rowNumber);
 };
