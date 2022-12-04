@@ -1,6 +1,6 @@
 {
   "name": "jobana-rusnia-bot",
-  "version": "0.0.0-alfa1",
+  "version": "0.0.3-alfa1",
   "description": "Bot for fucking .uzzian pigs",
   "private": "true",
   "scripts": {
@@ -38,5 +38,8 @@
     "@prisma/client": "^4.6.1",
     "dotenv": "^16.0.3",
     "telegraf": "^4.11.2"
+  },
+  "volta": {
+    "node": "18.12.1"
   }
 }
