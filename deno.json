@@ -1,0 +1,18 @@
+{
+  "lock": false,
+  "tasks": {
+    "start": "deno run -A --unstable mod.ts"
+  },
+  "imports": {
+    "cors/": "https://deno.land/x/cors@v1.2.2/",
+    "grammy/": "https://deno.land/x/grammy@v1.18.3/",
+    "postgresjs/": "https://deno.land/x/postgresjs@v3.3.5/",
+    "oak/": "https://deno.land/x/oak@v12.6.1/",
+    "$std/": "https://deno.land/std@0.202.0/"
+  },
+  "lint": {
+    "rules": {
+      "tags": ["recommended"]
+    }
+  }
+}
