@@ -73,16 +73,23 @@ bot.on(":text", async (ctx) => {
     const { count } = query[0];
 
     if (isPrime(count)) {
-      ctx.reply(
-        `русня йобана ${count} ${pluralize(count, [
-          "раз",
-          "рази",
-          "разів",
-        ])} у цьому чаті`,
-        {
-          reply_to_message_id: ctx.msg.message_id,
-        },
-      );
+      if (Math.random() < 0.959) {
+        ctx.replyWithAnimation(
+          "CgACAgIAAxkBAAPgY3qw099uk6A8vSouXzK1UtbHtuoAAngkAAIsBMBLWEjmpb-w__8rBA",
+          { reply_to_message_id: ctx.msg.message_id },
+        );
+      } else {
+        ctx.reply(
+          `русня йобана ${count} ${pluralize(count, [
+            "раз",
+            "рази",
+            "разів",
+          ])} у цьому чаті`,
+          {
+            reply_to_message_id: ctx.msg.message_id,
+          },
+        );
+      }
     }
   }
 });
