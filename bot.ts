@@ -2,11 +2,8 @@ import { Bot, InlineKeyboard, webhookCallback } from "grammy/mod.ts";
 import { BOT_TOKEN } from "./env.ts";
 import { isPrime, pluralize, triggers } from "./utils.ts";
 import { db } from "./db.ts";
-import { generateUpdateMiddleware } from "https://esm.sh/telegraf-middleware-console-time@2.1.0";
 
 const bot = new Bot(BOT_TOKEN);
-
-bot.use(generateUpdateMiddleware());
 
 bot.command("start", async (ctx) => {
   if (ctx.chat?.type === "private") {
