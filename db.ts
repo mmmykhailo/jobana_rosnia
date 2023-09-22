@@ -6,7 +6,4 @@ export const db = postgres(DATABASE_URL, {
   types: {
     bigint: postgres.BigInt,
   },
-  debug(connection, query, parameters, paramTypes) {
-    console.log(connection, query, parameters, paramTypes);
-  },
 });
