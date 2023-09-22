@@ -42,6 +42,17 @@ app.addEventListener("listen", async () => {
       unique("chat_id")
     );
   `;
+  await bot.api.setMyCommands([
+    {
+      command: "start",
+      description: "Почніть свою подорож країною ненависті до русні",
+    },
+    { command: "help", description: "Допомога" },
+    {
+      command: "top",
+      description: "Дізнайтеся, чи достатньо йобана русня у вашому чаті",
+    },
+  ]);
 });
 
 await app.listen({ port: 8000 });
