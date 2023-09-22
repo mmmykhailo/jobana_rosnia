@@ -1,11 +1,4 @@
 import postgres from "postgresjs/mod.js";
-import { PGDATABASE, PGHOST, PGPASSWORD, PGUSER } from "./env.ts";
+import { DATABASE_URL } from "./env.ts";
 
-export const db = postgres({
-  database: PGDATABASE,
-  hostname: PGHOST,
-  password: PGPASSWORD,
-  username: PGUSER,
-  debug: true,
-  ssl: true,
-});
+export const db = postgres(DATABASE_URL);
